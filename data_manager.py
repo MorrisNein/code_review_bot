@@ -14,6 +14,7 @@ class JSONStorage:
             raise NotImplementedError
 
         if not os.path.exists(self.json_file_path):
+            self.json_file_path.parent.mkdir(parents=True, exist_ok=True)
             with open(self.json_file_path, 'w') as file:
                 json.dump({}, file)
 
@@ -25,14 +26,14 @@ class JSONStorage:
 
     # Returns dict with data from json file
     def read_json(self) -> dict:
-        with open(self.json_file_path) as readFile:
-            dataFromJson = json.load(readFile)
+        with open(self.json_file_path, 'r') as read_file:
+            dataFromJson = json.load(read_file)
         return dataFromJson
 
     # Writing information to a file
     def write_json(self):
-        with open(self.json_file_path, 'w') as writeFile:
-            json.dump(self.data, writeFile, indent=4, ensure_ascii=False)
+        with open(self.json_file_path, 'w') as write_file:
+            json.dump(self.data, write_file, indent=4, ensure_ascii=False)
 
 
 class UsersDataManager(JSONStorage):
