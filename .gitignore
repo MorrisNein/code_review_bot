@@ -1,0 +1,3 @@
+*.session
+users_data.json
+/.idea/
