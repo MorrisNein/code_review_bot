@@ -2,3 +2,4 @@ aiogram~=2.20
 aioredis~=2.0.1
 Pyrogram~=2.0.26
 TgCrypto~=1.2.3
+python-dotenv~=0.20.0

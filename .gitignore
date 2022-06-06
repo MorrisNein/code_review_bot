@@ -1,3 +1,5 @@
 *.session
-users_data.json
+*.session-journal
+.env
 /.idea/
+/data/

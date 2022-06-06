@@ -2,19 +2,25 @@ import os
 
 import pyrogram
 from aiogram import Bot, Dispatcher
+from dotenv import dotenv_values
+
 # from aiogram.contrib.fsm_storage.redis import RedisStorage2
-from throttling_middleware import ThrottlingMiddleware
+# from throttling_middleware import ThrottlingMiddleware  # - Redis required
 
-TECH_SUPPORT_ID = [406584268]
-CHAT_ID = int(os.environ['CHAT_ID'])
-BOT_USERNAME = os.environ['BOT_USERNAME']
+_config = {
+    **dotenv_values('.env'),  # load values from file
+    # **os.environ  # override loaded values with environment variables
+}
 
-# Bot
-bot = Bot(token=os.environ['BOT_TOKEN'])
+TECH_SUPPORT_ID = [int(id_) for id_ in _config['TECH_SUPPORT_ID'].split(' ')]
+CHAT_ID = int(_config.get('CHAT_ID'))
+BOT_USERNAME = _config.get('BOT_USERNAME')
+
+bot = Bot(token=_config['BOT_TOKEN'])
 # storage = RedisStorage2()
-dp = Dispatcher(bot)
+dp = Dispatcher(
+    bot,
+    # storage=storage
+)
 # dp.middleware.setup(ThrottlingMiddleware())
-
-
-# User Bot
-pyro_client = pyrogram.Client(BOT_USERNAME, os.environ['TELEGRAM_API_ID'], os.environ['TELEGRAM_API_HASH'])
+pyro_client = pyrogram.Client(BOT_USERNAME, _config['TELEGRAM_API_ID'], _config['TELEGRAM_API_HASH'])
