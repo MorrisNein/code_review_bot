@@ -26,9 +26,3 @@ async def get_users_attributes(users_list, attributes) -> List[Dict[str, Any]]:
     users = await pyro_client.get_users([user['user_id'] for user in users_list])
     names_list = [{attribute: user.__getattribute__(attribute) for attribute in attributes} for user in users]
     return names_list
-
-
-# async def get_message_mentioned_users(chat_id, message_id):
-#     message: Message = await pyro_client.get_messages(chat_id=chat_id, message_ids=message_id)
-#     user_ids = [entity.user.id for entity in message.entities]
-#     return user_ids
