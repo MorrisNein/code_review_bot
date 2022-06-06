@@ -1,15 +1,12 @@
 from typing import Dict, List, Any
 
-import pyrogram
 from pyrogram import idle
-from pyrogram.types import Message
 
 import config
-
 from config import pyro_client
 
 
-async def userbot_loop():
+async def run_userbot():
     await pyro_client.start()
     await idle()
     await pyro_client.stop()

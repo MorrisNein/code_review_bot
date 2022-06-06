@@ -9,7 +9,7 @@ from async_lock import async_lock
 from config import bot, dp
 from keyboard import ChooseDeveloperRankKeyboardDispatcher, tmp_keyboard
 from models import User, get_full_name, update_users_list, DeveloperRanks
-from user_bot import get_chat_members_list, get_users_attributes, userbot_loop
+from user_bot import get_chat_members_list, get_users_attributes, run_userbot
 from wordings import *
 
 logging.basicConfig(level=logging.INFO)
@@ -134,8 +134,16 @@ async def choose_developers_rank(message: Message, **kwargs):
     )
 
 
+async def run_bot():
+    await dp.start_polling()
+
+
+async def main():
+    await asyncio.gather(
+        run_bot(),
+        run_userbot(),
+    )
+
 if __name__ == '__main__':
-    # Bot
-    loop = asyncio.get_event_loop()
-    loop.create_task(userbot_loop())
-    executor.start_polling(dp, loop=loop)
+    asyncio.get_event_loop().run_until_complete(main())
+
