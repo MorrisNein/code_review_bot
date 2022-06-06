@@ -87,7 +87,7 @@ w_help_tech = \
 Используемый аккаунт должен присутствовать в чате для работы бота.
     
 Репозиторий бота:
-https://github.com/MorrisNein/LazyCodeReviewBot
+https://github.com/MorrisNein/code_review_bot
 
 Отредактировать распределение разработчиков по младшими или старшим \
 пока что можно только через меня, @morrisnein.
