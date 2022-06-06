@@ -9,7 +9,7 @@ from dotenv import dotenv_values
 
 _config = {
     **dotenv_values('.env'),  # load values from file
-    # **os.environ  # override loaded values with environment variables
+    **os.environ  # override loaded values with environment variables
 }
 
 TECH_SUPPORT_ID = [int(id_) for id_ in _config['TECH_SUPPORT_ID'].split(' ')]
